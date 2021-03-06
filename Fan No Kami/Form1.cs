@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Msagl;
 using System.IO;
 
 namespace Fan_No_Kami {
@@ -21,7 +22,7 @@ namespace Fan_No_Kami {
         }
 
         private void btn_start_Click(object sender, EventArgs e) {
-            if (!txt_box_namafile.Text.Equals("")) {
+            if (!txt_box_namafile.Text.Equals("") || !txt_box_isi_file.Equals("")) {
                 if (dfs_opt.Checked || bfs_opt.Checked) {
                     string line;
                     List<string[]> lisString = new List<string[]>();
@@ -32,13 +33,15 @@ namespace Fan_No_Kami {
                             lisString.Add(line.Split(' '));
                         }
                     }
-
+                    //create a graph object 
+                    Microsoft.Msagl.Drawing.Graph graph2 = new Microsoft.Msagl.Drawing.Graph("graph");
                     GraphOfRelation g1 = new GraphOfRelation();
                     foreach (var str in lisString) {
                         g1.addRelation(str);
+                        graph2.AddEdge(str[0],str[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
                     }
                     lbl_isi.Text = g1.printRelation();
-
+                    gViewer1.Graph = graph2;
                 }
                 else {
                     MessageBox.Show("Anda Belum Memilih Algoritma!");
@@ -79,6 +82,10 @@ namespace Fan_No_Kami {
             Form f1new = new Form1();
             f1new.ShowDialog();
             this.Close();
+        }
+
+        private void gViewer1_Load(object sender, EventArgs e) {
+
         }
     }
 }
