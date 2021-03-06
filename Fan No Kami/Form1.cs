@@ -22,7 +22,7 @@ namespace Fan_No_Kami {
         }
 
         private void btn_start_Click(object sender, EventArgs e) {
-            if (!txt_box_namafile.Text.Equals("") || !txt_box_isi_file.Equals("")) {
+            if (!txt_box_namafile.Text.Equals("") || !txt_box_isi_file.Text.Equals("")) {
                 if (dfs_opt.Checked || bfs_opt.Checked) {
                     string line;
                     List<string[]> lisString = new List<string[]>();
@@ -36,10 +36,20 @@ namespace Fan_No_Kami {
                     //create a graph object 
                     Microsoft.Msagl.Drawing.Graph graph2 = new Microsoft.Msagl.Drawing.Graph("graph");
                     GraphOfRelation g1 = new GraphOfRelation();
+                    HashSet<string> listNode = new HashSet<string>();
                     foreach (var str in lisString) {
                         g1.addRelation(str);
                         graph2.AddEdge(str[0],str[1]).Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
+                        listNode.Add(str[0]);
+                        listNode.Add(str[1]);
                     }
+                    foreach (var node in listNode) {
+                        Microsoft.Msagl.Drawing.Node temp = graph2.FindNode(node);
+                        temp.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Diamond;
+                        temp.Attr.FillColor = Microsoft.Msagl.Drawing.Color.Aqua;
+                    }
+
+
                     lbl_isi.Text = g1.printRelation();
                     gViewer1.Graph = graph2;
                 }

@@ -65,7 +65,7 @@ namespace Fan_No_Kami {
             // lbl_isi
             // 
             this.lbl_isi.AutoSize = true;
-            this.lbl_isi.Location = new System.Drawing.Point(152, 181);
+            this.lbl_isi.Location = new System.Drawing.Point(133, 181);
             this.lbl_isi.Name = "lbl_isi";
             this.lbl_isi.Size = new System.Drawing.Size(31, 13);
             this.lbl_isi.TabIndex = 3;
@@ -147,7 +147,7 @@ namespace Fan_No_Kami {
             this.gViewer1.InsertingEdge = false;
             this.gViewer1.LayoutAlgorithmSettingsButtonVisible = false;
             this.gViewer1.LayoutEditingEnabled = true;
-            this.gViewer1.Location = new System.Drawing.Point(367, 146);
+            this.gViewer1.Location = new System.Drawing.Point(369, 114);
             this.gViewer1.LooseOffsetForRouting = 0.25D;
             this.gViewer1.MouseHitDistance = 0.05D;
             this.gViewer1.Name = "gViewer1";
