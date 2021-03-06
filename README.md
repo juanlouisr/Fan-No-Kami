@@ -10,7 +10,7 @@ Visual Studio 2019, .NET 4.7.2, .NET Desktop Development
 ## Building
 Visual Studio 2019 With .NET Desktop Development Installed
 
-![] (https://imgur.com/a/ZAjbAWw)
+![](https://imgur.com/a/ZAjbAWw)
 
 Open the '.sln' file with visual studio
 
@@ -18,7 +18,7 @@ Modify Something
 
 Click Start (Debug/Release Preset)
 
-![] (https://imgur.com/a/0j2APKy)
+![](https://imgur.com/a/0j2APKy)
 
 ## About Us
 13519075 - Juan Louis Rombetasik
