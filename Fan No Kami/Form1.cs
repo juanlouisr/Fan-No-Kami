@@ -21,12 +21,40 @@ namespace Fan_No_Kami {
         }
 
         private void btn_start_Click(object sender, EventArgs e) {
+            if (!txt_box_namafile.Text.Equals("")) {
+                if (dfs_opt.Checked || bfs_opt.Checked) {
+                    string line;
+                    List<string[]> lisString = new List<string[]>();
+
+                    using (StringReader reader = new StringReader(txt_box_isi_file.Text)) {
+                        line = reader.ReadLine(); // SKip Line 1
+                        while ((line = reader.ReadLine()) != null) {
+                            lisString.Add(line.Split(' '));
+                        }
+                    }
+
+                    GraphOfRelation g1 = new GraphOfRelation();
+                    foreach (var str in lisString) {
+                        g1.addRelation(str);
+                    }
+                    lbl_isi.Text = g1.printRelation();
+
+                }
+                else {
+                    MessageBox.Show("Anda Belum Memilih Algoritma!");
+                }
+            } else {
+                MessageBox.Show("Anda Belum Memilih File!");
+            }
+        }
+
+        private void btn_pilih_file_Click(object sender, EventArgs e) {
             var fileContent = string.Empty;
             var filePath = string.Empty;
 
-            using (OpenFileDialog openFileDialog = new OpenFileDialog()) {
+            using (OpenFileDialog openFileDialog = openFileDialog1) {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.Filter = "txt files (*.txt)|*.txt";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
@@ -42,22 +70,15 @@ namespace Fan_No_Kami {
                     }
                 }
             }
-            string line;
-            List<string[]> lisString = new List<string[]>();
+            txt_box_namafile.Text = filePath;
+            txt_box_isi_file.Text = fileContent;
+        }
 
-            using (StringReader reader = new StringReader(fileContent)) {
-                line = reader.ReadLine(); // SKip Line 1
-                while ((line = reader.ReadLine()) != null) {
-                    lisString.Add(line.Split(' '));
-                }
-            }
-
-            GraphOfRelation g1 = new GraphOfRelation();
-            foreach (var str in lisString) {
-                g1.addRelation(str);
-            }
-            lbl_isi.Text = g1.printRelation();
-            lbl_relasi.Text = fileContent;
+        private void btn_reset_Click(object sender, EventArgs e) {
+            this.Hide();
+            Form f1new = new Form1();
+            f1new.ShowDialog();
+            this.Close();
         }
     }
 }
