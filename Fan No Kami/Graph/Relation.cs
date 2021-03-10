@@ -28,9 +28,9 @@ namespace Fan_No_Kami.Graph {
         }
 
         public String printFriend() {
-            string str = this.name + " Mempunyai list teman berikut -> ";
+            string str = this.name + " Mempunyai list teman berikut ->";
             foreach (var setring in friends) {
-                str += setring + " ";
+                str += " " + setring;
             }
             return str;
         }

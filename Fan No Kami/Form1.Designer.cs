@@ -36,6 +36,11 @@ namespace Fan_No_Kami {
             this.btn_reset = new System.Windows.Forms.Button();
             this.txt_box_namafile = new System.Windows.Forms.RichTextBox();
             this.gViewer1 = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            this.lbl_mutualfriend = new System.Windows.Forms.Label();
+            this.txtbox_src = new System.Windows.Forms.TextBox();
+            this.txtbox_dest = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_logo
@@ -172,11 +177,57 @@ namespace Fan_No_Kami {
             this.gViewer1.ZoomWindowThreshold = 0.05D;
             this.gViewer1.Load += new System.EventHandler(this.gViewer1_Load);
             // 
+            // lbl_mutualfriend
+            // 
+            this.lbl_mutualfriend.AutoSize = true;
+            this.lbl_mutualfriend.Location = new System.Drawing.Point(29, 436);
+            this.lbl_mutualfriend.Name = "lbl_mutualfriend";
+            this.lbl_mutualfriend.Size = new System.Drawing.Size(35, 13);
+            this.lbl_mutualfriend.TabIndex = 11;
+            this.lbl_mutualfriend.Text = "label1";
+            // 
+            // txtbox_src
+            // 
+            this.txtbox_src.Location = new System.Drawing.Point(369, 45);
+            this.txtbox_src.Name = "txtbox_src";
+            this.txtbox_src.Size = new System.Drawing.Size(94, 20);
+            this.txtbox_src.TabIndex = 12;
+            // 
+            // txtbox_dest
+            // 
+            this.txtbox_dest.Location = new System.Drawing.Point(369, 88);
+            this.txtbox_dest.Name = "txtbox_dest";
+            this.txtbox_dest.Size = new System.Drawing.Size(93, 20);
+            this.txtbox_dest.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(366, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Asal";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(369, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Tujuan";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(727, 601);
+            this.ClientSize = new System.Drawing.Size(727, 619);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtbox_dest);
+            this.Controls.Add(this.txtbox_src);
+            this.Controls.Add(this.lbl_mutualfriend);
             this.Controls.Add(this.gViewer1);
             this.Controls.Add(this.txt_box_namafile);
             this.Controls.Add(this.btn_reset);
@@ -209,6 +260,11 @@ namespace Fan_No_Kami {
         private System.Windows.Forms.Button btn_reset;
         private System.Windows.Forms.RichTextBox txt_box_namafile;
         private Microsoft.Msagl.GraphViewerGdi.GViewer gViewer1;
+        private System.Windows.Forms.Label lbl_mutualfriend;
+        private System.Windows.Forms.TextBox txtbox_src;
+        private System.Windows.Forms.TextBox txtbox_dest;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

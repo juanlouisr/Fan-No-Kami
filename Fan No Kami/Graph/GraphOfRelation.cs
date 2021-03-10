@@ -7,13 +7,19 @@ using System.Threading.Tasks;
 namespace Fan_No_Kami.Graph {
     class GraphOfRelation {
         private List<Relation> listOfRelation;
-        private List<String> setOfNama;
 
         public GraphOfRelation() {
             this.listOfRelation = new List<Relation>();
-            this.setOfNama = new List<String>();
         }
-        public int getNumberOfVertex() => setOfNama.Count();
+
+        public Dictionary<string, List<string>> kamusTeman() {
+            var kmstmn = new Dictionary<string, List<string>>();
+            foreach (var r in listOfRelation) {
+                kmstmn.Add(r.getName(), r.getFriends());
+            }
+            return kmstmn;
+        }
+
         public void addRelation(String[] s) {
             // Komponen kiri pada input
             if (listOfRelation.Count() > 0) {
@@ -54,12 +60,98 @@ namespace Fan_No_Kami.Graph {
                 listOfRelation.Add(rNewInput_1);
             }
         }
-        public String printRelation() {
-            String str = "";
+        public string printRelation() {
+            string str = "";
             foreach (Relation r in listOfRelation) {
                 str += r.printFriend() +"\n";
             }
             return str;
         }
+
+        public string printMutualFriends(string awal, string tujuan) {
+            var mutualFriend = DFSTemanRekomendasi(awal, tujuan).Item1;
+            string str = "mutual friend dari " + awal + " ke " + tujuan + " :";
+            foreach (var friend in mutualFriend) {
+                str += " "+ friend ;
+            }
+            return str;
+        }
+
+
+        public string mutualFriends(string awal) {
+            string mututalFriend = "";
+            foreach (var str in kamusTeman()) {
+                if (!str.Key.Equals(awal)) {
+                    mututalFriend += printMutualFriends(awal,str.Key) + "\n";
+                }
+            }
+            return mututalFriend;
+        }
+
+        public string alur(string awal, string tujuan) {
+            var mutualFriend = DFSTemanRekomendasi(awal, tujuan).Item2;
+            string str = "alur " + awal + " ke " + tujuan;
+            foreach (var friend in mutualFriend) {
+                str += " " + friend;
+            }
+            return str;
+        }
+
+
+
+
+        public Tuple<List<string>, List<string>>  DFSTemanRekomendasi(string awal,string tujuan) {
+            if (awal.Equals(tujuan)) return null;
+
+            var alurTerkunjungi = new List<string>();
+            var kamusdata = kamusTeman();
+            var mutualFriends = new List<string>();
+            var stack = new Stack<string>();
+            var seen = new HashSet<string>();
+            var daftarTeman = new List<string>();
+
+            // pengecekan awal apakah ada string atau tidak
+            foreach (var r in listOfRelation) {
+                if (r.getName().Equals(awal)) {
+                    stack.Push(awal);
+                    daftarTeman = r.getFriends();
+                    break;
+                }
+            }
+
+            //daftarTeman = kamusdata[awal];
+
+            while (stack.Any() && !seen.Contains(tujuan)) {
+                string curr = stack.Pop();
+
+                
+                if (!seen.Contains(curr)) {
+                    seen.Add(curr);
+                    alurTerkunjungi.Add(curr);
+
+                    if (curr.Equals(tujuan)) {
+
+                        foreach (var namateman in kamusdata[curr]) {
+                            if (daftarTeman.Contains(namateman)) {
+                                mutualFriends.Add(namateman);
+                            }
+                        }
+                    }
+
+
+                    foreach (var nodes in kamusdata[curr]) {
+                        if (!seen.Contains(nodes)) {
+                            stack.Push(nodes);
+                        }
+                    }
+
+                }
+
+            }
+
+
+            return Tuple.Create(mutualFriends,alurTerkunjungi);
+        }
+
     }
 }
