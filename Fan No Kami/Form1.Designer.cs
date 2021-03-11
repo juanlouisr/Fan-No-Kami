@@ -28,7 +28,6 @@ namespace Fan_No_Kami {
             this.lbl_logo = new System.Windows.Forms.Label();
             this.btn_start = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.lbl_isi = new System.Windows.Forms.Label();
             this.txt_box_isi_file = new System.Windows.Forms.RichTextBox();
             this.dfs_opt = new System.Windows.Forms.RadioButton();
             this.bfs_opt = new System.Windows.Forms.RadioButton();
@@ -36,11 +35,12 @@ namespace Fan_No_Kami {
             this.btn_reset = new System.Windows.Forms.Button();
             this.txt_box_namafile = new System.Windows.Forms.RichTextBox();
             this.gViewer1 = new Microsoft.Msagl.GraphViewerGdi.GViewer();
-            this.lbl_mutualfriend = new System.Windows.Forms.Label();
             this.txtbox_src = new System.Windows.Forms.TextBox();
             this.txtbox_dest = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btn_refresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_logo
@@ -55,9 +55,9 @@ namespace Fan_No_Kami {
             // 
             // btn_start
             // 
-            this.btn_start.Location = new System.Drawing.Point(252, 135);
+            this.btn_start.Location = new System.Drawing.Point(421, 135);
             this.btn_start.Name = "btn_start";
-            this.btn_start.Size = new System.Drawing.Size(75, 23);
+            this.btn_start.Size = new System.Drawing.Size(98, 23);
             this.btn_start.TabIndex = 2;
             this.btn_start.Text = "mulai";
             this.btn_start.UseVisualStyleBackColor = true;
@@ -67,27 +67,18 @@ namespace Fan_No_Kami {
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // lbl_isi
-            // 
-            this.lbl_isi.AutoSize = true;
-            this.lbl_isi.Location = new System.Drawing.Point(133, 181);
-            this.lbl_isi.Name = "lbl_isi";
-            this.lbl_isi.Size = new System.Drawing.Size(31, 13);
-            this.lbl_isi.TabIndex = 3;
-            this.lbl_isi.Text = "relasi";
-            // 
             // txt_box_isi_file
             // 
-            this.txt_box_isi_file.Location = new System.Drawing.Point(32, 178);
+            this.txt_box_isi_file.Location = new System.Drawing.Point(26, 178);
             this.txt_box_isi_file.Name = "txt_box_isi_file";
-            this.txt_box_isi_file.Size = new System.Drawing.Size(95, 205);
+            this.txt_box_isi_file.Size = new System.Drawing.Size(81, 357);
             this.txt_box_isi_file.TabIndex = 4;
             this.txt_box_isi_file.Text = "";
             // 
             // dfs_opt
             // 
             this.dfs_opt.AutoSize = true;
-            this.dfs_opt.Location = new System.Drawing.Point(264, 91);
+            this.dfs_opt.Location = new System.Drawing.Point(428, 88);
             this.dfs_opt.Name = "dfs_opt";
             this.dfs_opt.Size = new System.Drawing.Size(46, 17);
             this.dfs_opt.TabIndex = 5;
@@ -98,7 +89,7 @@ namespace Fan_No_Kami {
             // bfs_opt
             // 
             this.bfs_opt.AutoSize = true;
-            this.bfs_opt.Location = new System.Drawing.Point(264, 114);
+            this.bfs_opt.Location = new System.Drawing.Point(480, 87);
             this.bfs_opt.Name = "bfs_opt";
             this.bfs_opt.Size = new System.Drawing.Size(45, 17);
             this.bfs_opt.TabIndex = 6;
@@ -108,7 +99,7 @@ namespace Fan_No_Kami {
             // 
             // btn_pilih_file
             // 
-            this.btn_pilih_file.Location = new System.Drawing.Point(132, 129);
+            this.btn_pilih_file.Location = new System.Drawing.Point(26, 135);
             this.btn_pilih_file.Name = "btn_pilih_file";
             this.btn_pilih_file.Size = new System.Drawing.Size(96, 26);
             this.btn_pilih_file.TabIndex = 7;
@@ -118,9 +109,9 @@ namespace Fan_No_Kami {
             // 
             // btn_reset
             // 
-            this.btn_reset.Location = new System.Drawing.Point(32, 401);
+            this.btn_reset.Location = new System.Drawing.Point(26, 577);
             this.btn_reset.Name = "btn_reset";
-            this.btn_reset.Size = new System.Drawing.Size(75, 23);
+            this.btn_reset.Size = new System.Drawing.Size(81, 23);
             this.btn_reset.TabIndex = 8;
             this.btn_reset.Text = "reset";
             this.btn_reset.UseVisualStyleBackColor = true;
@@ -129,11 +120,11 @@ namespace Fan_No_Kami {
             // txt_box_namafile
             // 
             this.txt_box_namafile.BackColor = System.Drawing.SystemColors.Control;
-            this.txt_box_namafile.Location = new System.Drawing.Point(32, 133);
+            this.txt_box_namafile.Location = new System.Drawing.Point(26, 104);
             this.txt_box_namafile.Multiline = false;
             this.txt_box_namafile.Name = "txt_box_namafile";
             this.txt_box_namafile.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Horizontal;
-            this.txt_box_namafile.Size = new System.Drawing.Size(94, 25);
+            this.txt_box_namafile.Size = new System.Drawing.Size(232, 25);
             this.txt_box_namafile.TabIndex = 9;
             this.txt_box_namafile.Text = "";
             // 
@@ -152,7 +143,7 @@ namespace Fan_No_Kami {
             this.gViewer1.InsertingEdge = false;
             this.gViewer1.LayoutAlgorithmSettingsButtonVisible = false;
             this.gViewer1.LayoutEditingEnabled = true;
-            this.gViewer1.Location = new System.Drawing.Point(369, 114);
+            this.gViewer1.Location = new System.Drawing.Point(558, 51);
             this.gViewer1.LooseOffsetForRouting = 0.25D;
             this.gViewer1.MouseHitDistance = 0.05D;
             this.gViewer1.Name = "gViewer1";
@@ -166,7 +157,7 @@ namespace Fan_No_Kami {
             this.gViewer1.SaveButtonVisible = true;
             this.gViewer1.SaveGraphButtonVisible = true;
             this.gViewer1.SaveInVectorFormatEnabled = true;
-            this.gViewer1.Size = new System.Drawing.Size(276, 335);
+            this.gViewer1.Size = new System.Drawing.Size(287, 549);
             this.gViewer1.TabIndex = 10;
             this.gViewer1.TightOffsetForRouting = 0.125D;
             this.gViewer1.ToolBarIsVisible = true;
@@ -177,25 +168,16 @@ namespace Fan_No_Kami {
             this.gViewer1.ZoomWindowThreshold = 0.05D;
             this.gViewer1.Load += new System.EventHandler(this.gViewer1_Load);
             // 
-            // lbl_mutualfriend
-            // 
-            this.lbl_mutualfriend.AutoSize = true;
-            this.lbl_mutualfriend.Location = new System.Drawing.Point(29, 436);
-            this.lbl_mutualfriend.Name = "lbl_mutualfriend";
-            this.lbl_mutualfriend.Size = new System.Drawing.Size(35, 13);
-            this.lbl_mutualfriend.TabIndex = 11;
-            this.lbl_mutualfriend.Text = "label1";
-            // 
             // txtbox_src
             // 
-            this.txtbox_src.Location = new System.Drawing.Point(369, 45);
+            this.txtbox_src.Location = new System.Drawing.Point(302, 87);
             this.txtbox_src.Name = "txtbox_src";
             this.txtbox_src.Size = new System.Drawing.Size(94, 20);
             this.txtbox_src.TabIndex = 12;
             // 
             // txtbox_dest
             // 
-            this.txtbox_dest.Location = new System.Drawing.Point(369, 88);
+            this.txtbox_dest.Location = new System.Drawing.Point(303, 135);
             this.txtbox_dest.Name = "txtbox_dest";
             this.txtbox_dest.Size = new System.Drawing.Size(93, 20);
             this.txtbox_dest.TabIndex = 13;
@@ -203,7 +185,7 @@ namespace Fan_No_Kami {
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(366, 29);
+            this.label1.Location = new System.Drawing.Point(299, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 14;
@@ -212,22 +194,43 @@ namespace Fan_No_Kami {
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(369, 73);
+            this.label2.Location = new System.Drawing.Point(299, 116);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 15;
             this.label2.Text = "Tujuan";
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.Control;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(132, 179);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(387, 421);
+            this.flowLayoutPanel1.TabIndex = 19;
+            // 
+            // btn_refresh
+            // 
+            this.btn_refresh.Location = new System.Drawing.Point(26, 548);
+            this.btn_refresh.Name = "btn_refresh";
+            this.btn_refresh.Size = new System.Drawing.Size(81, 23);
+            this.btn_refresh.TabIndex = 20;
+            this.btn_refresh.Text = "refresh";
+            this.btn_refresh.UseVisualStyleBackColor = true;
+            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(727, 619);
+            this.ClientSize = new System.Drawing.Size(886, 629);
+            this.Controls.Add(this.btn_refresh);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtbox_dest);
             this.Controls.Add(this.txtbox_src);
-            this.Controls.Add(this.lbl_mutualfriend);
             this.Controls.Add(this.gViewer1);
             this.Controls.Add(this.txt_box_namafile);
             this.Controls.Add(this.btn_reset);
@@ -235,7 +238,6 @@ namespace Fan_No_Kami {
             this.Controls.Add(this.bfs_opt);
             this.Controls.Add(this.dfs_opt);
             this.Controls.Add(this.txt_box_isi_file);
-            this.Controls.Add(this.lbl_isi);
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.lbl_logo);
             this.Name = "Form1";
@@ -252,7 +254,6 @@ namespace Fan_No_Kami {
         private System.Windows.Forms.Label lbl_logo;
         private System.Windows.Forms.Button btn_start;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Label lbl_isi;
         private System.Windows.Forms.RichTextBox txt_box_isi_file;
         private System.Windows.Forms.RadioButton dfs_opt;
         private System.Windows.Forms.RadioButton bfs_opt;
@@ -260,11 +261,12 @@ namespace Fan_No_Kami {
         private System.Windows.Forms.Button btn_reset;
         private System.Windows.Forms.RichTextBox txt_box_namafile;
         private Microsoft.Msagl.GraphViewerGdi.GViewer gViewer1;
-        private System.Windows.Forms.Label lbl_mutualfriend;
-        private System.Windows.Forms.TextBox txtbox_src;
-        private System.Windows.Forms.TextBox txtbox_dest;
+        public System.Windows.Forms.TextBox txtbox_src;
+        public System.Windows.Forms.TextBox txtbox_dest;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btn_refresh;
     }
 }
 

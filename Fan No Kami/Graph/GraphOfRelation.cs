@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Fan_No_Kami.Graph {
     class GraphOfRelation {
         private List<Relation> listOfRelation;
-
+        
         public GraphOfRelation() {
             this.listOfRelation = new List<Relation>();
         }
@@ -19,7 +19,7 @@ namespace Fan_No_Kami.Graph {
             }
             return kmstmn;
         }
-
+        
         public void addRelation(String[] s) {
             // Komponen kiri pada input
             if (listOfRelation.Count() > 0) {
@@ -60,6 +60,10 @@ namespace Fan_No_Kami.Graph {
                 listOfRelation.Add(rNewInput_1);
             }
         }
+
+        #region Print Method
+
+        // Mereturn string yang berisi Node : Teman-Temannya (adjacentNode)
         public string printRelation() {
             string str = "";
             foreach (Relation r in listOfRelation) {
@@ -68,41 +72,31 @@ namespace Fan_No_Kami.Graph {
             return str;
         }
 
+        // Mereturn string yang berisi mutual friend dari Awal ke Tujuan
         public string printMutualFriends(string awal, string tujuan) {
             var mutualFriend = DFSTemanRekomendasi(awal, tujuan).Item1;
-            string str = "mutual friend dari " + awal + " ke " + tujuan + " :";
+            string str = "Mutual friend :";
             foreach (var friend in mutualFriend) {
                 str += " "+ friend ;
             }
             return str;
         }
-
-
-        public string mutualFriends(string awal) {
-            string mututalFriend = "";
-            foreach (var str in kamusTeman()) {
-                if (!str.Key.Equals(awal)) {
-                    mututalFriend += printMutualFriends(awal,str.Key) + "\n";
-                }
-            }
-            return mututalFriend;
-        }
-
+        
+        // Menreturn string yang berisi alur dari Awal ke Tujuan (saat ini masih DFS saja)
         public string alur(string awal, string tujuan) {
             var mutualFriend = DFSTemanRekomendasi(awal, tujuan).Item2;
-            string str = "alur " + awal + " ke " + tujuan;
+            if (!mutualFriend.Contains(tujuan)) return "Tidak Bisa Terhubung ke " + tujuan;
+            string str = "Alur menuju " + tujuan + ":";
             foreach (var friend in mutualFriend) {
                 str += " " + friend;
             }
             return str;
         }
 
+        #endregion
 
-
-
+        #region DFS Algorithm
         public Tuple<List<string>, List<string>>  DFSTemanRekomendasi(string awal,string tujuan) {
-            if (awal.Equals(tujuan)) return null;
-
             var alurTerkunjungi = new List<string>();
             var kamusdata = kamusTeman();
             var mutualFriends = new List<string>();
@@ -124,7 +118,6 @@ namespace Fan_No_Kami.Graph {
             while (stack.Any() && !seen.Contains(tujuan)) {
                 string curr = stack.Pop();
 
-                
                 if (!seen.Contains(curr)) {
                     seen.Add(curr);
                     alurTerkunjungi.Add(curr);
@@ -138,20 +131,19 @@ namespace Fan_No_Kami.Graph {
                         }
                     }
 
-
                     foreach (var nodes in kamusdata[curr]) {
                         if (!seen.Contains(nodes)) {
                             stack.Push(nodes);
                         }
                     }
-
                 }
-
             }
-
 
             return Tuple.Create(mutualFriends,alurTerkunjungi);
         }
 
     }
+    #endregion
+
+        
 }
