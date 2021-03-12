@@ -91,12 +91,12 @@ namespace Fan_No_Kami.Graph {
         // Menreturn string yang berisi alur dari Awal ke Tujuan (saat ini masih DFS saja)
         public string alur(string awal, string tujuan, Algo algo) {
 
-            List<string> mutualFriend;
-            if (algo == Algo.DFS) mutualFriend = DFSTemanRekomendasi(awal, tujuan).Item2;
-            else mutualFriend = BFSTemanRekomendasi(awal, tujuan);
-            if (!mutualFriend.Contains(tujuan)) return "Tidak Bisa Terhubung ke " + tujuan;
+            List<string> alurnya;
+            if (algo == Algo.DFS) alurnya = DFSTemanRekomendasi(awal, tujuan).Item2;
+            else alurnya = BFSAlur(awal, tujuan);
+            if (!alurnya.Contains(tujuan)) return "Tidak Bisa Terhubung ke " + tujuan;
             string str = "Alur menuju " + tujuan + ":";
-            foreach (var friend in mutualFriend) {
+            foreach (var friend in alurnya) {
                 str += " " + friend;
             }
             return str;
@@ -104,8 +104,37 @@ namespace Fan_No_Kami.Graph {
         #endregion
 
         #region BFS Algorithm
-        private List<string> BFSTemanRekomendasi(string awal, string tujuan) {
-            throw new NotImplementedException();
+        public List<string> BFSAlur(string awal, string tujuan) {
+            var alurTerkunjungi = new List<string>();
+            var kamusdata = kamusTeman();
+            var seen = new HashSet<string>();
+            var queue = new Queue<string>();
+
+            // pengecekan awal apakah ada string atau tidak
+            foreach (var r in listOfRelation) {
+                if (r.getName().Equals(awal)) {
+                    queue.Enqueue(awal);
+                    foreach (var nodes in kamusdata[awal]) queue.Enqueue(nodes);
+                    break;
+                }
+            }
+
+            while (queue.Any() && !seen.Contains(tujuan)) {
+                var curr = queue.Dequeue();
+
+                if (!seen.Contains(curr)) {
+                    seen.Add(curr);
+                    alurTerkunjungi.Add(curr);
+                    
+                }
+                foreach (var nodes in kamusdata[curr]) {
+                    if (!seen.Contains(nodes)) {
+                        queue.Enqueue(nodes);
+                    }
+                }
+
+            }  
+            return alurTerkunjungi;
         }
         #endregion
 

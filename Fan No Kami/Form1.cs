@@ -41,12 +41,13 @@ namespace Fan_No_Kami {
                     if (dfs_opt.Checked || bfs_opt.Checked) {
                         if (comboBox1.Text.Equals("")) throw new IndexOutOfRangeException();
                         flowLayoutPanel1.Controls.Clear();
-                        populateItem(comboBox1.Text);
                         if (dfs_opt.Checked) {
+                            populateItem(comboBox1.Text, GraphOfRelation.Algo.DFS);
                             traverseGraph(gViewer1.Graph, g1.DFSTemanRekomendasi(comboBox1.Text, tujuan).Item2);
                         }
                         else {
-                            MessageBox.Show("Algoritma belum selesai");
+                            populateItem(comboBox1.Text, GraphOfRelation.Algo.BFS);
+                            traverseGraph(gViewer1.Graph, g1.BFSAlur(comboBox1.Text, tujuan));
                         }
                     }
                     else {
@@ -120,17 +121,29 @@ namespace Fan_No_Kami {
             txt_box_isi_file.Text = fileContent;
             if (!txt_box_isi_file.Text.Equals("")) visualizeGraph();
         }
+        struct MutualFriendCount {
+            public string Node { get; set; }
+            public int JumlahMutual { get; set; }
+        }
 
         // Membuat List Item (referensi user control :  ListItem.cs ) saat ini masih DFS saja
-        private void populateItem(string awal) {
+        private void populateItem(string awal, GraphOfRelation.Algo algo) {
             ListItem[] listItems = new ListItem[listNode.Count-1];
             int i = 0;
-            foreach (var node in listNode) {
-                if (!node.Equals(awal)) {
+
+            var node_mutualfriend_count = new Dictionary<string, int>();
+            foreach (string node in listNode) {
+                node_mutualfriend_count.Add(node, g1.DFSTemanRekomendasi(awal, node).Item1.Count());
+            }
+            var sorted = node_mutualfriend_count.OrderByDescending(kvp => kvp.Value).ToArray();
+
+
+            foreach (var pair in sorted) {
+                if (!pair.Key.Equals(awal)) {
                     listItems[i] = new ListItem();
-                    listItems[i].NamaNode = node;
-                    listItems[i].MutualFriends = g1.printMutualFriends(awal, node);
-                    listItems[i].Alur = g1.alur(awal, node, GraphOfRelation.Algo.DFS);
+                    listItems[i].NamaNode = pair.Key;
+                    listItems[i].MutualFriends = g1.printMutualFriends(awal, pair.Key);
+                    listItems[i].Alur = g1.alur(awal, pair.Key, algo);
                     if (flowLayoutPanel1.Controls.Count < 0) {
                         flowLayoutPanel1.Controls.Clear();
                     }
@@ -189,13 +202,12 @@ namespace Fan_No_Kami {
             try {
                 if (dfs_opt.Checked || bfs_opt.Checked) {
                     lbl_rcmded.Text = "Rekomendasi Teman:";
+                    flowLayoutPanel1.Controls.Clear();
                     if (dfs_opt.Checked) {
-                        flowLayoutPanel1.Controls.Clear();
-                        populateItem(comboBox1.Text);
-
+                        populateItem(comboBox1.Text, GraphOfRelation.Algo.DFS);
                     }
                     else {
-                        MessageBox.Show("Algoritma belum selesai");
+                        populateItem(comboBox1.Text, GraphOfRelation.Algo.BFS);
                     }
                 }
                 else {
