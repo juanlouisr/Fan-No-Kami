@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fan_No_Kami.Graph {
     class GraphOfRelation {
@@ -13,7 +11,7 @@ namespace Fan_No_Kami.Graph {
         }
 
         private List<Relation> listOfRelation;
-        
+
         public GraphOfRelation() {
             this.listOfRelation = new List<Relation>();
         }
@@ -25,7 +23,7 @@ namespace Fan_No_Kami.Graph {
             }
             return kmstmn;
         }
-        
+
         public void addRelation(String[] s) {
             // Komponen kiri pada input
             if (listOfRelation.Count() > 0) {
@@ -73,7 +71,7 @@ namespace Fan_No_Kami.Graph {
         public string printRelation() {
             string str = "";
             foreach (Relation r in listOfRelation) {
-                str += r.printFriend() +"\n";
+                str += r.printFriend() + "\n";
             }
             return str;
         }
@@ -83,11 +81,11 @@ namespace Fan_No_Kami.Graph {
             var mutualFriend = DFSTemanRekomendasi(awal, tujuan).Item1;
             string str = "Mutual friend :";
             foreach (var friend in mutualFriend) {
-                str += " "+ friend ;
+                str += " " + friend;
             }
             return str;
         }
-        
+
         // Menreturn string yang berisi alur dari Awal ke Tujuan (saat ini masih DFS saja)
         public string alur(string awal, string tujuan, Algo algo) {
 
@@ -125,7 +123,7 @@ namespace Fan_No_Kami.Graph {
                 if (!seen.Contains(curr)) {
                     seen.Add(curr);
                     alurTerkunjungi.Add(curr);
-                    
+
                 }
                 foreach (var nodes in kamusdata[curr]) {
                     if (!seen.Contains(nodes)) {
@@ -133,13 +131,13 @@ namespace Fan_No_Kami.Graph {
                     }
                 }
 
-            }  
+            }
             return alurTerkunjungi;
         }
         #endregion
 
         #region DFS Algorithm
-        public Tuple<List<string>, List<string>>  DFSTemanRekomendasi(string awal,string tujuan) {
+        public Tuple<List<string>, List<string>> DFSTemanRekomendasi(string awal, string tujuan) {
             var alurTerkunjungi = new List<string>();
             var kamusdata = kamusTeman();
             var mutualFriends = new List<string>();
@@ -175,7 +173,7 @@ namespace Fan_No_Kami.Graph {
                         }
                     }
                     var temp = kamusdata[curr].ToArray();
-                    
+
                     foreach (var nodes in temp.Reverse().ToArray()) {
                         if (!seen.Contains(nodes)) {
                             stack.Push(nodes);
@@ -184,11 +182,11 @@ namespace Fan_No_Kami.Graph {
                 }
             }
 
-            return Tuple.Create(mutualFriends,alurTerkunjungi);
+            return Tuple.Create(mutualFriends, alurTerkunjungi);
         }
 
     }
     #endregion
 
-        
+
 }

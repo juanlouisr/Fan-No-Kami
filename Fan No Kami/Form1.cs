@@ -1,16 +1,11 @@
-﻿using System;
-using Fan_No_Kami.Graph;
+﻿using Fan_No_Kami.Graph;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Microsoft.Msagl;
-using System.Threading;
 using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace Fan_No_Kami {
     public partial class Form1 : Form {
@@ -33,7 +28,7 @@ namespace Fan_No_Kami {
         private void btn_start_Click(object sender, EventArgs e) {
             start("");
         }
-    
+
         // Menjalankan animasi
         internal void start(string tujuan) {
             if (!txt_box_namafile.Text.Equals("") || !txt_box_isi_file.Text.Equals("")) {
@@ -70,7 +65,7 @@ namespace Fan_No_Kami {
                 gViewer1.Graph = graph2;
                 this.Refresh();
                 Thread.Sleep(1000);
-                
+
                 graph2.FindNode(node).Attr.FillColor = Microsoft.Msagl.Drawing.Color.SteelBlue;
                 gViewer1.Graph = graph2;
 
@@ -79,7 +74,7 @@ namespace Fan_No_Kami {
 
         // Menload file dan menampilkan visualiasi graph
         public void btn_pilih_file_Click(object sender, EventArgs e) {
-            
+
             var filePath = string.Empty;
 
             using (OpenFileDialog openFileDialog = openFileDialog1) {
@@ -121,14 +116,10 @@ namespace Fan_No_Kami {
             txt_box_isi_file.Text = fileContent;
             if (!txt_box_isi_file.Text.Equals("")) visualizeGraph();
         }
-        struct MutualFriendCount {
-            public string Node { get; set; }
-            public int JumlahMutual { get; set; }
-        }
 
         // Membuat List Item (referensi user control :  ListItem.cs ) saat ini masih DFS saja
         private void populateItem(string awal, GraphOfRelation.Algo algo) {
-            ListItem[] listItems = new ListItem[listNode.Count-1];
+            ListItem[] listItems = new ListItem[listNode.Count - 1];
             int i = 0;
 
             var node_mutualfriend_count = new Dictionary<string, int>();
@@ -136,7 +127,6 @@ namespace Fan_No_Kami {
                 node_mutualfriend_count.Add(node, g1.DFSTemanRekomendasi(awal, node).Item1.Count());
             }
             var sorted = node_mutualfriend_count.OrderByDescending(kvp => kvp.Value).ToArray();
-
 
             foreach (var pair in sorted) {
                 if (!pair.Key.Equals(awal)) {
@@ -198,7 +188,7 @@ namespace Fan_No_Kami {
 
         // Menampilkan list item saat node awal dipilih
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
-            
+
             try {
                 if (dfs_opt.Checked || bfs_opt.Checked) {
                     lbl_rcmded.Text = "Rekomendasi Teman:";

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Fan_No_Kami {
@@ -20,11 +14,11 @@ namespace Fan_No_Kami {
         private string _alur;
 
         [Category("custom props")]
-        public string NamaNode { 
-            get { return _namaNode; } 
-            set { _namaNode = value; lbl_dest.Text = value; } 
+        public string NamaNode {
+            get { return _namaNode; }
+            set { _namaNode = value; lbl_dest.Text = value; }
         }
-        
+
         [Category("custom props")]
         public string MutualFriends {
             get { return _mutualFriends; }
