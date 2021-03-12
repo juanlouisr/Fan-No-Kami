@@ -40,8 +40,7 @@ namespace Fan_No_Kami {
 
         private void button1_Click(object sender, EventArgs e) {
             Form1 form1 = (Form1)ParentForm;
-            form1.txtbox_dest.Text = this.lbl_dest.Text;
-            form1.btn_start_Click(sender, e);
+            form1.start(lbl_dest.Text);
         }
     }
 }

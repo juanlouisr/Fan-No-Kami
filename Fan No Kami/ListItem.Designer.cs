@@ -56,8 +56,7 @@ namespace Fan_No_Kami {
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(265, 15);
+            this.button1.Location = new System.Drawing.Point(270, 15);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 29);
             this.button1.TabIndex = 3;
@@ -95,7 +94,7 @@ namespace Fan_No_Kami {
             this.Controls.Add(this.lbl_mutual);
             this.Controls.Add(this.panel1);
             this.Name = "ListItem";
-            this.Size = new System.Drawing.Size(360, 61);
+            this.Size = new System.Drawing.Size(365, 61);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

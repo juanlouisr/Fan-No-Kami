@@ -17,24 +17,33 @@ namespace Fan_No_Kami {
 
         GraphOfRelation g1;
         HashSet<string> listNode;
+        string fileContent = string.Empty;
 
         public Form1() {
             InitializeComponent();
         }
-        
-        private void Form1_Load(object sender, EventArgs e) {
 
+        // Ketika Form di munculkan
+        private void Form1_Load(object sender, EventArgs e) {
+            txt_box_namafile.Text = "";
+            lbl_rcmded.Text = "";
         }
 
         // Saat tombol "mulai" di klik
-        public void btn_start_Click(object sender, EventArgs e) {
+        private void btn_start_Click(object sender, EventArgs e) {
+            start("");
+        }
+    
+        // Menjalankan animasi
+        internal void start(string tujuan) {
             if (!txt_box_namafile.Text.Equals("") || !txt_box_isi_file.Text.Equals("")) {
                 try {
                     if (dfs_opt.Checked || bfs_opt.Checked) {
+                        if (comboBox1.Text.Equals("")) throw new IndexOutOfRangeException();
+                        flowLayoutPanel1.Controls.Clear();
+                        populateItem(comboBox1.Text);
                         if (dfs_opt.Checked) {
-                            flowLayoutPanel1.Controls.Clear();
-                            populateItem();
-                            traverseGraph(gViewer1.Graph, g1.DFSTemanRekomendasi(txtbox_src.Text, txtbox_dest.Text).Item2);
+                            traverseGraph(gViewer1.Graph, g1.DFSTemanRekomendasi(comboBox1.Text, tujuan).Item2);
                         }
                         else {
                             MessageBox.Show("Algoritma belum selesai");
@@ -45,9 +54,10 @@ namespace Fan_No_Kami {
                     }
                 }
                 catch (IndexOutOfRangeException) {
-                    MessageBox.Show("Error! Tidak ada Node yang bernama " + txtbox_src.Text);
+                    MessageBox.Show("Error! Node awal belum dipilih");
                 }
-            } else {
+            }
+            else {
                 MessageBox.Show("Anda Belum Memilih File!");
             }
         }
@@ -60,7 +70,7 @@ namespace Fan_No_Kami {
                 this.Refresh();
                 Thread.Sleep(1000);
                 
-                graph2.FindNode(node).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Aqua;
+                graph2.FindNode(node).Attr.FillColor = Microsoft.Msagl.Drawing.Color.SteelBlue;
                 gViewer1.Graph = graph2;
 
             }
@@ -68,7 +78,7 @@ namespace Fan_No_Kami {
 
         // Menload file dan menampilkan visualiasi graph
         public void btn_pilih_file_Click(object sender, EventArgs e) {
-            var fileContent = string.Empty;
+            
             var filePath = string.Empty;
 
             using (OpenFileDialog openFileDialog = openFileDialog1) {
@@ -87,14 +97,13 @@ namespace Fan_No_Kami {
                     using (StreamReader reader = new StreamReader(fileStream)) {
                         fileContent = reader.ReadToEnd();
                     }
+                    // Udapte file content
+                    txt_box_namafile.Text = filePath;
+                    txt_box_isi_file.Text = fileContent;
+
+                    visualizeGraph();
                 }
             }
-
-            // Udapte file content
-            txt_box_namafile.Text = filePath;
-            txt_box_isi_file.Text = fileContent;
-
-            visualizeGraph();
         }
 
         // Mengload ulang visualisasi graph
@@ -102,28 +111,26 @@ namespace Fan_No_Kami {
             visualizeGraph();
         }
 
-        // Menload ulang form
+        // Menload ulang graph semula
         private void btn_reset_Click(object sender, EventArgs e) {
-            this.Hide();
-            Form f1new = new Form1();
-            f1new.ShowDialog();
-            this.Close();
-        }
-
-        private void gViewer1_Load(object sender, EventArgs e) {
-
+            //this.Hide();
+            //Form f1new = new Form1();
+            //f1new.ShowDialog();
+            //this.Close();
+            txt_box_isi_file.Text = fileContent;
+            if (!txt_box_isi_file.Text.Equals("")) visualizeGraph();
         }
 
         // Membuat List Item (referensi user control :  ListItem.cs ) saat ini masih DFS saja
-        private void populateItem() {
+        private void populateItem(string awal) {
             ListItem[] listItems = new ListItem[listNode.Count-1];
             int i = 0;
             foreach (var node in listNode) {
-                if (!node.Equals(txtbox_src.Text)) {
+                if (!node.Equals(awal)) {
                     listItems[i] = new ListItem();
                     listItems[i].NamaNode = node;
-                    listItems[i].MutualFriends = g1.printMutualFriends(txtbox_src.Text, node);
-                    listItems[i].Alur = g1.alur(txtbox_src.Text, node);
+                    listItems[i].MutualFriends = g1.printMutualFriends(awal, node);
+                    listItems[i].Alur = g1.alur(awal, node, GraphOfRelation.Algo.DFS);
                     if (flowLayoutPanel1.Controls.Count < 0) {
                         flowLayoutPanel1.Controls.Clear();
                     }
@@ -132,8 +139,8 @@ namespace Fan_No_Kami {
                     }
                     i++;
                 }
- 
             }
+
         }
 
         // Menampilkan visualisasi graph pada gviewer MSAGL
@@ -164,15 +171,41 @@ namespace Fan_No_Kami {
 
             // Mengubah design visualiasi graph
             foreach (var node in listNode) {
+                if (!comboBox1.Items.Contains(node)) comboBox1.Items.Add(node);
                 Microsoft.Msagl.Drawing.Node temp = graph2.FindNode(node);
-                temp.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Diamond;
-                temp.Attr.FillColor = Microsoft.Msagl.Drawing.Color.Aqua;
+                temp.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Ellipse;
+                temp.Attr.FillColor = Microsoft.Msagl.Drawing.Color.SteelBlue;
+                temp.Label.FontColor = Microsoft.Msagl.Drawing.Color.White;
             }
-
+            string tesmsdas = comboBox1.Text;
 
             // Menampilkan Graph MSAGL
             gViewer1.Graph = graph2;
         }
-    
+
+        // Menampilkan list item saat node awal dipilih
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+            
+            try {
+                if (dfs_opt.Checked || bfs_opt.Checked) {
+                    lbl_rcmded.Text = "Rekomendasi Teman:";
+                    if (dfs_opt.Checked) {
+                        flowLayoutPanel1.Controls.Clear();
+                        populateItem(comboBox1.Text);
+
+                    }
+                    else {
+                        MessageBox.Show("Algoritma belum selesai");
+                    }
+                }
+                else {
+                    MessageBox.Show("Anda Belum Memilih Algoritma!");
+                }
+            }
+            catch (IndexOutOfRangeException) {
+                MessageBox.Show("Error! Tidak ada Node yang bernama " + comboBox1.Text);
+            }
+
+        }
     }
 }

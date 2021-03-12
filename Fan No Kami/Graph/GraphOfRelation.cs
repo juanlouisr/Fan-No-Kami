@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace Fan_No_Kami.Graph {
     class GraphOfRelation {
+
+        internal enum Algo {
+            DFS,
+            BFS
+        }
+
         private List<Relation> listOfRelation;
         
         public GraphOfRelation() {
@@ -83,8 +89,11 @@ namespace Fan_No_Kami.Graph {
         }
         
         // Menreturn string yang berisi alur dari Awal ke Tujuan (saat ini masih DFS saja)
-        public string alur(string awal, string tujuan) {
-            var mutualFriend = DFSTemanRekomendasi(awal, tujuan).Item2;
+        public string alur(string awal, string tujuan, Algo algo) {
+
+            List<string> mutualFriend;
+            if (algo == Algo.DFS) mutualFriend = DFSTemanRekomendasi(awal, tujuan).Item2;
+            else mutualFriend = BFSTemanRekomendasi(awal, tujuan);
             if (!mutualFriend.Contains(tujuan)) return "Tidak Bisa Terhubung ke " + tujuan;
             string str = "Alur menuju " + tujuan + ":";
             foreach (var friend in mutualFriend) {
@@ -92,7 +101,12 @@ namespace Fan_No_Kami.Graph {
             }
             return str;
         }
+        #endregion
 
+        #region BFS Algorithm
+        private List<string> BFSTemanRekomendasi(string awal, string tujuan) {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region DFS Algorithm
@@ -122,6 +136,7 @@ namespace Fan_No_Kami.Graph {
                     seen.Add(curr);
                     alurTerkunjungi.Add(curr);
 
+
                     if (curr.Equals(tujuan)) {
 
                         foreach (var namateman in kamusdata[curr]) {
@@ -130,8 +145,9 @@ namespace Fan_No_Kami.Graph {
                             }
                         }
                     }
-
-                    foreach (var nodes in kamusdata[curr]) {
+                    var temp = kamusdata[curr].ToArray();
+                    
+                    foreach (var nodes in temp.Reverse().ToArray()) {
                         if (!seen.Contains(nodes)) {
                             stack.Push(nodes);
                         }
