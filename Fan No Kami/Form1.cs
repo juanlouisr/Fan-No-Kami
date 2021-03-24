@@ -35,6 +35,7 @@ namespace Fan_No_Kami {
                 try {
                     if (dfs_opt.Checked || bfs_opt.Checked) {
                         if (comboBox1.Text.Equals("")) throw new IndexOutOfRangeException();
+                        lbl_rcmded.Text = "Rekomendasi Teman:";
                         flowLayoutPanel1.Controls.Clear();
                         if (dfs_opt.Checked) {
                             populateItem(comboBox1.Text, GraphOfRelation.Algo.DFS);
@@ -180,7 +181,6 @@ namespace Fan_No_Kami {
                 temp.Attr.FillColor = Microsoft.Msagl.Drawing.Color.SteelBlue;
                 temp.Label.FontColor = Microsoft.Msagl.Drawing.Color.White;
             }
-            string tesmsdas = comboBox1.Text;
 
             // Menampilkan Graph MSAGL
             gViewer1.Graph = graph2;
@@ -188,7 +188,6 @@ namespace Fan_No_Kami {
 
         // Menampilkan list item saat node awal dipilih
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
-
             try {
                 if (dfs_opt.Checked || bfs_opt.Checked) {
                     lbl_rcmded.Text = "Rekomendasi Teman:";

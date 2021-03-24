@@ -45,11 +45,11 @@ namespace Fan_No_Kami {
             // lbl_logo
             // 
             this.lbl_logo.AutoSize = true;
-            this.lbl_logo.Font = new System.Drawing.Font("UD Digi Kyokasho N-B", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lbl_logo.Font = new System.Drawing.Font("UD Digi Kyokasho N-B", 51.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lbl_logo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(233)))), ((int)(((byte)(245)))));
-            this.lbl_logo.Location = new System.Drawing.Point(8, 25);
+            this.lbl_logo.Location = new System.Drawing.Point(12, 26);
             this.lbl_logo.Name = "lbl_logo";
-            this.lbl_logo.Size = new System.Drawing.Size(288, 74);
+            this.lbl_logo.Size = new System.Drawing.Size(310, 80);
             this.lbl_logo.TabIndex = 0;
             this.lbl_logo.Text = "団扇の神";
             // 
@@ -57,9 +57,9 @@ namespace Fan_No_Kami {
             // 
             this.btn_start.AutoSize = true;
             this.btn_start.Font = new System.Drawing.Font("UD Digi Kyokasho NK-R", 9.75F);
-            this.btn_start.Location = new System.Drawing.Point(421, 137);
+            this.btn_start.Location = new System.Drawing.Point(403, 150);
             this.btn_start.Name = "btn_start";
-            this.btn_start.Size = new System.Drawing.Size(86, 25);
+            this.btn_start.Size = new System.Drawing.Size(103, 25);
             this.btn_start.TabIndex = 2;
             this.btn_start.Text = "mulai";
             this.btn_start.UseVisualStyleBackColor = true;
@@ -86,7 +86,7 @@ namespace Fan_No_Kami {
             this.dfs_opt.AutoSize = true;
             this.dfs_opt.Font = new System.Drawing.Font("UD Digi Kyokasho NK-B", 8.25F, System.Drawing.FontStyle.Bold);
             this.dfs_opt.ForeColor = System.Drawing.Color.White;
-            this.dfs_opt.Location = new System.Drawing.Point(421, 91);
+            this.dfs_opt.Location = new System.Drawing.Point(403, 131);
             this.dfs_opt.Name = "dfs_opt";
             this.dfs_opt.Size = new System.Drawing.Size(49, 17);
             this.dfs_opt.TabIndex = 5;
@@ -99,7 +99,7 @@ namespace Fan_No_Kami {
             this.bfs_opt.AutoSize = true;
             this.bfs_opt.Font = new System.Drawing.Font("UD Digi Kyokasho NK-B", 8.25F, System.Drawing.FontStyle.Bold);
             this.bfs_opt.ForeColor = System.Drawing.Color.White;
-            this.bfs_opt.Location = new System.Drawing.Point(422, 114);
+            this.bfs_opt.Location = new System.Drawing.Point(458, 131);
             this.bfs_opt.Name = "bfs_opt";
             this.bfs_opt.Size = new System.Drawing.Size(48, 17);
             this.bfs_opt.TabIndex = 6;
@@ -110,7 +110,7 @@ namespace Fan_No_Kami {
             // btn_pilih_file
             // 
             this.btn_pilih_file.Font = new System.Drawing.Font("UD Digi Kyokasho NK-R", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btn_pilih_file.Location = new System.Drawing.Point(26, 135);
+            this.btn_pilih_file.Location = new System.Drawing.Point(26, 132);
             this.btn_pilih_file.Name = "btn_pilih_file";
             this.btn_pilih_file.Size = new System.Drawing.Size(82, 26);
             this.btn_pilih_file.TabIndex = 7;
@@ -179,7 +179,7 @@ namespace Fan_No_Kami {
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(132, 121);
+            this.label1.Location = new System.Drawing.Point(132, 129);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 28);
             this.label1.TabIndex = 14;
@@ -214,7 +214,7 @@ namespace Fan_No_Kami {
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Font = new System.Drawing.Font("UD Digi Kyokasho NK-B", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(183, 123);
+            this.comboBox1.Location = new System.Drawing.Point(183, 129);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(65, 23);
             this.comboBox1.TabIndex = 21;
@@ -236,7 +236,7 @@ namespace Fan_No_Kami {
             this.lbl_rcmded.AutoSize = true;
             this.lbl_rcmded.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold);
             this.lbl_rcmded.ForeColor = System.Drawing.Color.White;
-            this.lbl_rcmded.Location = new System.Drawing.Point(132, 150);
+            this.lbl_rcmded.Location = new System.Drawing.Point(132, 152);
             this.lbl_rcmded.Name = "lbl_rcmded";
             this.lbl_rcmded.Size = new System.Drawing.Size(183, 28);
             this.lbl_rcmded.TabIndex = 23;

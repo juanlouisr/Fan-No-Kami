@@ -16,12 +16,12 @@ namespace Fan_No_Kami.Graph {
             this.listOfRelation = new List<Relation>();
         }
 
-        public Dictionary<string, List<string>> kamusTeman() {
-            var kmstmn = new Dictionary<string, List<string>>();
+        public Dictionary<string, HashSet<string>> kamusTeman() {
+            var kmstmn = new Dictionary<string, HashSet<string>>();
             foreach (var r in listOfRelation) {
                 kmstmn.Add(r.getName(), r.getFriends());
             }
-            return kmstmn;
+            return kmstmn;;
         }
 
         public void addRelation(String[] s) {
@@ -90,7 +90,7 @@ namespace Fan_No_Kami.Graph {
         public string alur(string awal, string tujuan, Algo algo) {
 
             List<string> alurnya;
-            if (algo == Algo.DFS) alurnya = DFSTemanRekomendasi(awal, tujuan).Item2;
+            if (algo == Algo.DFS) alurnya = DFS(awal, tujuan);
             else alurnya = BFSAlur(awal, tujuan);
             if (!alurnya.Contains(tujuan)) return "Tidak Bisa Terhubung ke " + tujuan;
             string str = "Alur menuju " + tujuan + ":";
@@ -102,7 +102,47 @@ namespace Fan_No_Kami.Graph {
         #endregion
 
         #region BFS Algorithm
-        public List<string> BFSAlur(string awal, string tujuan) {
+        public List<String> BFSAlur(String awal, String tujuan) {
+            var qRel = new Queue<string>();
+            var seen = new HashSet<string>();
+            var flow = new List<string>();
+            var kamusTeman = this.kamusTeman();
+
+            //Parent Dictionary
+
+            var parentDictionary = new Dictionary<string, string>();
+            qRel.Enqueue(awal);
+            while (qRel.Any()) {
+                string current = qRel.Dequeue();
+
+                if (!seen.Contains(current)) {
+                    seen.Add(current);
+                    flow.Add(current);
+                }
+
+                foreach (string friends in kamusTeman[current]) {
+                    if (!seen.Contains(friends)) {
+                        seen.Add(friends);
+                        qRel.Enqueue(friends);
+                        parentDictionary.Add(friends, current);
+                    }
+
+                }
+            }
+            // END GAME
+            var pathFinder = new List<string>();
+            string cek = tujuan;
+            while (parentDictionary.ContainsKey(cek)) {
+                pathFinder.Add(cek);
+                cek = parentDictionary[cek];
+                if (pathFinder.Contains(awal)) break;
+            }
+            pathFinder.Add(awal);
+            pathFinder.Reverse();
+            return pathFinder;
+        }
+
+        public List<string> BFS(string awal, string tujuan) {
             var alurTerkunjungi = new List<string>();
             var kamusdata = kamusTeman();
             var seen = new HashSet<string>();
@@ -143,7 +183,7 @@ namespace Fan_No_Kami.Graph {
             var mutualFriends = new List<string>();
             var stack = new Stack<string>();
             var seen = new HashSet<string>();
-            var daftarTeman = new List<string>();
+            var daftarTeman = new HashSet<string>();
 
             // pengecekan awal apakah ada string atau tidak
             foreach (var r in listOfRelation) {
@@ -165,7 +205,6 @@ namespace Fan_No_Kami.Graph {
 
 
                     if (curr.Equals(tujuan)) {
-
                         foreach (var namateman in kamusdata[curr]) {
                             if (daftarTeman.Contains(namateman)) {
                                 mutualFriends.Add(namateman);
@@ -184,6 +223,53 @@ namespace Fan_No_Kami.Graph {
 
             return Tuple.Create(mutualFriends, alurTerkunjungi);
         }
+
+
+        public List<String> DFS(String awal, String tujuan) {
+            var sRel = new Stack<string>();
+            var seen = new List<string>();
+            var flow = new List<string>();
+            var kamusTeman = this.kamusTeman();
+
+            //Parent Dictionary
+            var parentDictionary = new Dictionary<string,string>();
+
+            sRel.Push(awal);
+            while (sRel.Any()) {
+                var current = sRel.Pop();
+
+                if (!seen.Contains(current)) {
+                    seen.Add(current);
+                    flow.Add(current);
+                }
+
+                if (seen.Contains(tujuan)) {
+                    break;
+                }
+                var temp = kamusTeman[current].ToArray();
+               
+                foreach (var friends in temp.Reverse().ToArray()) {
+                    if (!seen.Contains(friends)) {
+                        sRel.Push(friends);
+                        if (parentDictionary.ContainsKey(friends)) { parentDictionary[friends] = current; }
+                        else { parentDictionary.Add(friends, current); }
+                    }
+                }
+            }
+            // END GAME
+            // END GAME
+            var pathFinder = new List<string>();
+            String cek = tujuan;
+            while (parentDictionary.ContainsKey(cek)) {
+                pathFinder.Add(cek);
+                cek = parentDictionary[cek];
+                if (pathFinder.Contains(awal)) break;
+            }
+            pathFinder.Add(awal);
+            pathFinder.Reverse() ;
+            return pathFinder;
+        }
+
 
     }
     #endregion

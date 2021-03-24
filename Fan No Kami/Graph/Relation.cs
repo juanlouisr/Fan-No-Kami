@@ -4,18 +4,18 @@ using System.Collections.Generic;
 namespace Fan_No_Kami.Graph {
     class Relation {
         private String name;
-        private List<String> friends;
+        private HashSet<String> friends;
 
         public Relation(String name) {
             this.name = name;
-            this.friends = new List<String>();
+            this.friends = new HashSet<string>();
         }
 
         public String getName() {
             return name;
         }
 
-        public List<String> getFriends() {
+        public HashSet<string> getFriends() {
             return friends;
         }
 
