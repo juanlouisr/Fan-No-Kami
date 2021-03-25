@@ -134,7 +134,9 @@ namespace Fan_No_Kami {
                     listItems[i] = new ListItem();
                     listItems[i].NamaNode = pair.Key;
                     listItems[i].MutualFriends = g1.printMutualFriends(awal, pair.Key);
-                    listItems[i].Alur = g1.alur(awal, pair.Key, algo);
+                    listItems[i].Alur = g1.alur(awal, pair.Key, algo).Item1;
+                    listItems[i].Degree = "Degree: " + g1.alur(awal, pair.Key, algo).Item2;
+
                     if (flowLayoutPanel1.Controls.Count < 0) {
                         flowLayoutPanel1.Controls.Clear();
                     }

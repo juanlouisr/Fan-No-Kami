@@ -12,6 +12,7 @@ namespace Fan_No_Kami {
         private string _namaNode;
         private string _mutualFriends;
         private string _alur;
+        private string _degree;
 
         [Category("custom props")]
         public string NamaNode {
@@ -29,6 +30,12 @@ namespace Fan_No_Kami {
         public string Alur {
             get { return _alur; }
             set { _alur = value; lbl_alur.Text = value; }
+        }
+
+        [Category("custom props")]
+        public string Degree {
+            get { return _degree; }
+            set { _degree = value; lbl_degree.Text = value; }
         }
         #endregion
 

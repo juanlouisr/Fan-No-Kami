@@ -29,6 +29,7 @@ namespace Fan_No_Kami {
             this.button1 = new System.Windows.Forms.Button();
             this.lbl_alur = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_degree = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,11 +85,21 @@ namespace Fan_No_Kami {
             this.panel1.Size = new System.Drawing.Size(59, 61);
             this.panel1.TabIndex = 5;
             // 
+            // lbl_degree
+            // 
+            this.lbl_degree.AutoSize = true;
+            this.lbl_degree.Location = new System.Drawing.Point(209, 15);
+            this.lbl_degree.Name = "lbl_degree";
+            this.lbl_degree.Size = new System.Drawing.Size(46, 13);
+            this.lbl_degree.TabIndex = 6;
+            this.lbl_degree.Text = "degree :";
+            // 
             // ListItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.Controls.Add(this.lbl_degree);
             this.Controls.Add(this.lbl_alur);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lbl_mutual);
@@ -109,5 +120,6 @@ namespace Fan_No_Kami {
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lbl_alur;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lbl_degree;
     }
 }

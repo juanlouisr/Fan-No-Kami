@@ -87,18 +87,18 @@ namespace Fan_No_Kami.Graph {
         }
 
         // Menreturn string yang berisi alur dari Awal ke Tujuan (saat ini masih DFS saja)
-        public string alur(string awal, string tujuan, Algo algo) {
+        public Tuple<string, int> alur(string awal, string tujuan, Algo algo) {
 
             List<string> alurnya;
             if (algo == Algo.DFS) alurnya = DFS(awal, tujuan);
             else alurnya = BFSAlur(awal, tujuan);
-            if (!alurnya.Contains(tujuan)) return "Tidak Bisa Terhubung ke " + tujuan;
+            if (!alurnya.Contains(tujuan)) return Tuple.Create("Tidak Bisa Terhubung ke " + tujuan, 0);
             string str = "Alur menuju " + tujuan + ":";
             foreach (var friend in alurnya) {
                 str += " " + friend;
             }
-
-            return str;
+            int degree = alurnya.Count() - 2;
+            return Tuple.Create(str,degree);
         }
 
         
