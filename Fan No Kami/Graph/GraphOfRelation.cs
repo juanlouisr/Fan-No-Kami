@@ -97,10 +97,13 @@ namespace Fan_No_Kami.Graph {
             foreach (var friend in alurnya) {
                 str += " " + friend;
             }
+
             return str;
         }
-        #endregion
 
+        
+        #endregion
+        
         #region BFS Algorithm
         public List<String> BFSAlur(String awal, String tujuan) {
             var qRel = new Queue<string>();

@@ -43,7 +43,7 @@ namespace Fan_No_Kami {
                         }
                         else {
                             populateItem(comboBox1.Text, GraphOfRelation.Algo.BFS);
-                            traverseGraph(gViewer1.Graph, g1.BFSAlur(comboBox1.Text, tujuan));
+                            traverseGraph(gViewer1.Graph, g1.BFS(comboBox1.Text, tujuan));
                         }
                     }
                     else {
