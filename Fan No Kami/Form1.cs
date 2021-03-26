@@ -39,11 +39,11 @@ namespace Fan_No_Kami {
                         flowLayoutPanel1.Controls.Clear();
                         if (dfs_opt.Checked) {
                             populateItem(comboBox1.Text, GraphOfRelation.Algo.DFS);
-                            traverseGraph(gViewer1.Graph, g1.DFSTemanRekomendasi(comboBox1.Text, tujuan).Item2);
+                            traverseGraph(gViewer1.Graph, g1.DFS(comboBox1.Text, tujuan));
                         }
                         else {
                             populateItem(comboBox1.Text, GraphOfRelation.Algo.BFS);
-                            traverseGraph(gViewer1.Graph, g1.BFS(comboBox1.Text, tujuan));
+                            traverseGraph(gViewer1.Graph, g1.BFSAlur(comboBox1.Text, tujuan));
                         }
                     }
                     else {

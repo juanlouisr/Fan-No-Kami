@@ -93,7 +93,7 @@ namespace Fan_No_Kami.Graph {
             if (algo == Algo.DFS) alurnya = DFS(awal, tujuan);
             else alurnya = BFSAlur(awal, tujuan);
             if (!alurnya.Contains(tujuan)) return Tuple.Create("Tidak Bisa Terhubung ke " + tujuan, 0);
-            string str = "Alur menuju " + tujuan + ":";
+            string str = "Cara menuju " + tujuan + ":";
             foreach (var friend in alurnya) {
                 str += " " + friend;
             }
