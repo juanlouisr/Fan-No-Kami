@@ -1,28 +1,33 @@
-# Fan-No-Kami
+---
+description: My Collection of Books
+---
 
-## Prereq
-### Building
-Visual Studio 2019, .NET 4.7.2, .NET Desktop Development
+# Library
 
-### Run Only
-.NET 4.7.2
+## Getting Super Powers
 
-## Building
-Visual Studio 2019 With .NET Desktop Development Installed
+Becoming a super hero is a fairly straight forward process:
 
-![dotnet desktop dev](https://user-images.githubusercontent.com/68516528/110205630-ae143780-7eab-11eb-8be8-0cd7263db49d.gif)
+```
+$ give me super-powers
+```
 
-Open the '.sln' file with visual studio
+{% hint style="info" %}
+ Super-powers are granted randomly so please submit an issue if you're not happy with yours.
+{% endhint %}
 
-Modify Something
+Once you're strong enough, save the world:
 
-Click Start (Debug/Release Preset)
+{% code title="hello.sh" %}
+```bash
+# Ain't no code for that yet, sorry
+echo 'You got to trust me on this, I saved the world'
+```
+{% endcode %}
 
-![how to build](https://user-images.githubusercontent.com/68516528/110205638-bc625380-7eab-11eb-8683-2898f2b21927.gif)
+{% page-ref page="motivational-words.md" %}
 
-## About Us
-13519075 - Juan Louis Rombetasik
+{% hint style="info" %}
+Test Doang
+{% endhint %}
 
-13519109 - Christian Tobing Alexandro
-
-13519115 - Aria Bachrul Ulum Berlian
